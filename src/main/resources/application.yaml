@@ -14,3 +14,18 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  config:
+    import:
+      - application_qa.yml
+      - application_prod.yml
+  profiles:
+    active: "qa"
+build:
+  version: "0.1"
+
+loans:
+  message: "Loans microservice is active"
+  contactDetails:
+    name: "Muthyalu Bhavesh"
+    email: "bhavesh16281@gmail.com"
+    phone: "+91 8309828565"
