@@ -4,7 +4,7 @@ spring:
   application:
     name: loans
   profiles:
-    active: qa
+    active: prod
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
@@ -20,6 +20,23 @@ spring:
     show-sql: true
   config:
     import: "configserver:http://localhost:8071/"
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: "guest"
+    password: "guest"
+  cloud:
+    stream:
+      rabbit:
+        binder:
+          auto-bind-dlq: false
+      bindings:
+        springCloudBusInput:
+          destination: springCloudBus
+          group: ${spring.application.name}
+          binder: rabbit
+          consumer:
+            max-attempts: 1
 management:
   endpoints:
     web:
