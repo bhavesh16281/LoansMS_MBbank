@@ -1,5 +1,6 @@
 server:
   port: 8090
+
 spring:
   application:
     name: loans
@@ -19,24 +20,16 @@ spring:
       ddl-auto: update
     show-sql: true
   config:
-    import: "configserver:http://localhost:8071/"
+    import: "configserver:http://${CONFIG_SERVER_URL:localhost:8071}/"
   rabbitmq:
     host: localhost
     port: 5672
-    username: "guest"
-    password: "guest"
+    username: guest
+    password: guest
   cloud:
-    stream:
-      rabbit:
-        binder:
-          auto-bind-dlq: false
-      bindings:
-        springCloudBusInput:
-          destination: springCloudBus
-          group: ${spring.application.name}
-          binder: rabbit
-          consumer:
-            max-attempts: 1
+    bus:
+      enabled: true
+
 management:
   endpoints:
     web:
