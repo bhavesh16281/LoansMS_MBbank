@@ -87,6 +87,11 @@ public class LoansController {
     })
     @GetMapping("/contact-info")
     public ResponseEntity<LoansContactInfoDto> getContactInfo(){
+        // try {
+        //         Thread.sleep(20000);
+        // } catch (InterruptedException e) {
+        //         e.printStackTrace();
+        // }
         return ResponseEntity.ok(loansContactInfoDto);
     }
 
