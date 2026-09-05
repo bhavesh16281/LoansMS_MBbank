@@ -49,6 +49,9 @@ management:
   info:
     env:
       enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
 endpoints:
   shutdown:
     enabled: true
@@ -72,3 +75,5 @@ logging:
     com:
       bhavesh16281:
         loans: DEBUG
+  pattern:
+    level: "%5p[${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
